@@ -21,11 +21,12 @@ galleryEl.insertAdjacentHTML('beforeend', markup.join(''));
 galleryEl.addEventListener('click', onClick);
 
 function onClick (event) {
-    const isCardEl = event.target.classList.contains('.gallery__link')
-    
-if(isCardEl){
+    const isCardEl = event.target.classList.contains('gallery__image');
+if (!isCardEl){
     return;
 }
+console.log(event.target)
+
 const galleryImage = event.target.dataset.source;
 galleryEl.src = galleryImage;
 
