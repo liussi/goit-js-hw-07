@@ -18,7 +18,8 @@ const markup = galleryItems.map(({preview, original, description}) => `<li class
 
 `)
 galleryEl.insertAdjacentHTML('beforeend', markup.join(''));
-galleryEl.addEventListener('click', onClick);
+galleryEl.addEventListener('click', onClick), { onClose: (instance) => { galleryEl.removeEventListener('click', onClick);
+}}
 
 function onClick (event) {
     const isCardEl = event.target.classList.contains('gallery__image');
@@ -36,21 +37,20 @@ const instance = basicLightbox.create(`
 
 instance.show();
 
-// document.addEventListener('keydown', (event)=> {
-//   if(event.code === 'Escape') {
-//     instance.onClose: (instance) => {
-//       document.removeEventListener('keydown');
-//     }
-//   }
-// });
-
-
-
 document.addEventListener('keydown', onCheck);
-document.removeEventListener('keydown', onCheck)
+
  function onCheck (event) {
-  if(event.code === 'Escape')onClose(instance)
- }}
+
+  if(event.code === 'Escape'){
+    instance.close(), { onClose: (instance) => {
+      document.removeEventListener('keydown', onCheck)
+
+    }
+  }
+ }
+ }
+}
+ 
 
 
 
