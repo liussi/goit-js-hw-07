@@ -12,15 +12,6 @@ const markup = galleryItems.map(({preview, original, description}) => `<li class
 </li>
 `);
 galleryEl.insertAdjacentHTML('beforeend', markup.join(''));
-galleryEl.addEventListener('click', onClick);
-
-
-function onClick (event) {
-    const isCardEl = event.target.classList.contains('gallery__image');
-if (!isCardEl){
-    return;
-}
-// console.log(event.target)
 
 let lightbox = new SimpleLightbox('.gallery a', { 
     captions : true,
@@ -28,4 +19,3 @@ let lightbox = new SimpleLightbox('.gallery a', {
     captionDelay : 250,
  });
 
-}
