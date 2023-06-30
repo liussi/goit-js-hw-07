@@ -31,26 +31,22 @@ console.log(event.target)
 const galleryImage = event.target.dataset.source;
 galleryEl.src = galleryImage;
 
-const instance = basicLightbox.create(`
-    <img src="${galleryImage}">
-`)
-
+const instance = basicLightbox.create(`<img src="${galleryImage}">
+`, { onShow: (instance) =>  document.addEventListener('keydown', onCheck),
+   onClose: (instance) => document.removeEventListener('keydown', onCheck)
+  })
 instance.show();
 
-document.addEventListener('keydown', onCheck);
-
+  
  function onCheck (event) {
 
   if(event.code === 'Escape'){
-    instance.close(), { onClose: (instance) => {
-      document.removeEventListener('keydown', onCheck)
+    instance.close()
 
     }
   }
  }
- }
-}
- 
+
 
 
 
