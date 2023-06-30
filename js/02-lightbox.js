@@ -7,7 +7,7 @@ const galleryEl = document.querySelector('.gallery');
 
 const markup = galleryItems.map(({preview, original, description}) => `<li class="gallery__item">
 <a class="gallery__link" onclick="return false" href="${original}">
-   <img class="gallery__image" src="${preview}" alt="${description}" />
+   <img class="gallery__image" src="${preview}" alt="${description}" title="${description}" />
 </a>
 </li>
 `);
@@ -20,27 +20,12 @@ function onClick (event) {
 if (!isCardEl){
     return;
 }
-console.log(event.target)
-const galleryImage = event.target.getAttribute('Alt');
+// console.log(event.target)
 
-console.log(galleryImage)
-
-let lightbox = new SimpleLightbox('.gallery a');
-galleryEl.on('shown.simplelightbox', function () {
-        	captions=true;
-});
-console.log(lightbox)
-
-// let gallery = new SimpleLightbox('.gallery__image alt');
-// gallery.on('shown.simplelightbox', function () {
-// 	galleryImage.captions();
-// });
-
-
-// const instance = basicLightbox.create(`
-//     <img src="${galleryImage}">
-// `)
-
-// instance.show()
+let lightbox = new SimpleLightbox('.gallery a', { 
+    captions : true,
+    captionPosition : 'bottom',
+    captionDelay : 250,
+ });
 
 }
